@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Nik0 Finance | Login </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="tela_login">
+        <div class="conteudo_login">
+            <div class="conteiner_logo">
+                <img src="{{ url_for('static', filename='images/logo_nik0.png') }}" id="logo_projeto">
+            </div>
+            <form method="post" action="{{ url_for('login') }}" class="forms_login">
+                <p alt="Usuário" class="username"> 
+                    <img src="{{ url_for('static', filename='images/icone_usuario.png') }}" class="iconUsuario"> 
+                    <input name="username" type="text" class="inputUsername" placeholder="Usuário" required>
+                </p>
+                <p alt="Senha" class="password">
+                    <img src="{{ url_for('static', filename='images/icone_senha.png') }}" class="iconSenha">
+                    <input name="password" type="password" class="inputPassword" placeholder="Senha" required>
+                </p>
+                <input type="submit" value="Acessar" id="botao_acessar" class="button">
+            </form>
+            <a href="{{ url_for('cadastro') }}">Cadastrar-se</a>
+        </div>
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages-container">
+                {% for message, category in messages %}
+                    <div class="flash-message {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+</body>
+<script>
+    // Espera 7 segundos e remove as mensagens flash
+    setTimeout(function() {
+        var flashMessages = document.getElementsByClassName('flash-message');
+        for (var i = 0; i < flashMessages.length; i++) {
+            flashMessages[i].style.display = 'none';
+        }
+    }, 6000);
+</script>

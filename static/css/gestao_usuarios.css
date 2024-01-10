@@ -1,0 +1,117 @@
+body {
+    margin: 0px
+}
+
+/*                                        BARRA DE NAVEGAÇÃO                                       */
+
+.barraNavegacao {
+    background-color: rgb(0, 0, 0); /* Cor de fundo da barra de navegação */
+    padding: 20px; /* Espaçamento interno */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.conteiner_logo {
+    display: flex;
+    align-items: center;
+}
+
+#logo_projeto {
+    max-width: 200px; 
+}
+
+.conteiner_botao {
+    display: flex;
+    align-items: center;
+}
+
+#link_gestao_usuarios {
+    
+    width: 90px;
+    cursor: pointer;  
+    background: #ffffff;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 14px;  
+    font-family: Poppins;
+    font-weight: 700;
+    user-select: none;
+    border-radius: 10px; 
+    border: none;
+    text-decoration: none;
+}
+
+#barra {
+    color: white;
+    margin: 0px 30px 0px 30px;
+    font-size: 50px;
+}
+
+#form_logout input {
+    width: 60px;
+    cursor: pointer;  
+    background: #ffffff;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 14px;  
+    font-family: Poppins;
+    font-weight: 700;
+    user-select: none;
+    border-radius: 10px; 
+    border: none;
+    margin: 0 auto;
+}
+
+
+/*                                        TABELA USUÁRIOS                                       */
+
+.tabelaUsuarios {
+    display: block;
+    overflow-x:auto;
+    font-family: Poppins;
+    margin: 0px 20px 0px 20px;
+    padding: 20px;
+    border-radius: 8px;
+
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+tr:nth-child(even) {           
+    background-color: #f8f8f8
+}
+
+.tabelaUsuarios th {
+    background-color: #000000;
+    height: 30px;
+    color: white;
+}
+
+.tabelaUsuarios tr:hover {
+    background-color: #ececec
+}
+
+.excluir-form button {
+    padding: 10px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    font-family: Poppins;
+    border-radius: 10px;
+}
+
+.excluir-form button:hover {
+    background-color: #c60000;
+}

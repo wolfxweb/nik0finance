@@ -1,0 +1,130 @@
+body {
+    background-color: black;
+}
+
+.tela_login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: white;
+}
+
+.conteiner_logo {
+    padding-top: 20px;
+    Display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.logo_projeto {
+    max-width: 200px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+}
+
+
+.conteudo_login {
+    padding: 40px;
+}
+
+.conteudo_login a {
+    margin-top: 30px;
+    text-align: center;
+    display: block;
+    font-family: Poppins;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+}
+
+#logo_projeto {
+    text-align: center;
+}
+
+.forms_login {
+    margin-top: 40px;
+    
+}
+
+.username,
+.password,
+.confirmPassword {
+    display: flex;
+    align-items: center; /* Adiciona esta linha para alinhar verticalmente */
+    position: relative; /* Remove a propriedade position: absolute */
+}
+
+.confirmPassword{
+    margin-bottom: 50px;
+}
+
+
+.iconUsuario {
+    position: absolute;
+    left: 10px;
+    top: 48%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: auto;
+}
+
+.iconSenha {
+    position: absolute;
+    left: 11px;
+    top: 52%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: auto;
+}
+
+.iconConfirmarSenha {
+    position: absolute;
+    left: 11px;
+    top: 52%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: auto;
+}
+
+.inputUsername,
+.inputPassword,
+.inputConfirmPassword {
+    font-family: Poppins;
+    font-size: 16px;
+    width: 270px;
+    padding: 10px;  
+    border-radius: 10px;
+    outline: none;
+    border:none;
+    background-color: #F1F1F1;
+    padding-left: 40px;
+    
+}
+
+.forms_login {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.button {
+    width: 150px;
+    cursor: pointer;  
+    background: #ffffff;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 18px;  
+    font-family: Poppins;
+    font-weight: 700;
+    user-select: none;
+    border-radius: 10px; 
+    border: none;
+    margin: 0 auto;
+}

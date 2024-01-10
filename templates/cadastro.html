@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Nik0 Finance | Cadastro </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="tela_login">
+        <div class="conteudo_login">
+            <div class="conteiner_logo">
+                <img src="{{ url_for('static', filename='images/logo_nik0.png') }}" id="logo_projeto">
+            </div>
+            <form method="post" action="{{ url_for('cadastro') }}" class="forms_login">
+                <p alt="Usuário" class="username"> 
+                    <img src="{{ url_for('static', filename='images/icone_usuario.png') }}" class="iconUsuario"> 
+                    <input name="username" type="text" class="inputUsername" placeholder="Insira seu Usuário" required>
+                </p>
+                <p alt="Senha" class="password">
+                    <img src="{{ url_for('static', filename='images/icone_senha.png') }}" class="iconSenha">
+                    <input name="password" type="password" class="inputPassword" placeholder="Insira sua Senha" required>
+                </p>
+                <p alt="Confirmar Senha" class="confirmPassword">
+                    <img src="{{ url_for('static', filename='images/icone_senha.png') }}" class="iconConfirmarSenha">
+                    <input name="confirmPassword" type="password" class="inputConfirmPassword" placeholder="Confirme sua Senha" required>
+                </p>
+                <input type="submit" value="Criar Acesso" id="botao_acessar" class="button">
+            </form>
+            <a href="{{ url_for('index') }}">Voltar a Tela de Login</a>
+        </div>
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages-container">
+                {% for message, category in messages %}
+                    <div class="flash-message {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+</body>
+<script>
+    // Espera 7 segundos e remove as mensagens flash
+    setTimeout(function() {
+        var flashMessages = document.getElementsByClassName('flash-message');
+        for (var i = 0; i < flashMessages.length; i++) {
+            flashMessages[i].style.display = 'none';
+        }
+    }, 6000);
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.querySelector('.forms_login');
+        var passwordInput = form.querySelector('.inputPassword');
+        var confirmPasswordInput = form.querySelector('.inputConfirmPassword');
+        var submitButton = form.querySelector('.button');
+
+        submitButton.addEventListener('click', function (event) {
+            // Verifica se as senhas são iguais
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                alert('As senhas não coincidem. Por favor, insira senhas iguais.');
+                event.preventDefault(); // Impede o envio do formulário
+            }
+        });
+    });
+</script>

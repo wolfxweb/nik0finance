@@ -1,0 +1,371 @@
+body {
+    margin: 0px
+}
+
+.barraNavegacao {
+    background-color: rgb(0, 0, 0); /* Cor de fundo da barra de navegação */
+    padding: 20px; /* Espaçamento interno */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.conteiner_logo {
+    display: flex;
+    align-items: center;
+}
+
+#logo_projeto {
+    max-width: 200px; 
+}
+
+.conteiner_botao {
+    display: flex;
+    align-items: center;
+}
+
+#link_gestao_usuarios {
+    
+    width: 70px;
+    cursor: pointer;  
+    background: #ffffff;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 14px;  
+    font-family: Poppins;
+    font-weight: 700;
+    user-select: none;
+    border-radius: 10px; 
+    border: none;
+    text-decoration: none;
+}
+
+#barra {
+    color: white;
+    margin: 0px 30px 0px 30px;
+    font-size: 50px;
+}
+
+#form_logout input {
+    width: 60px;
+    cursor: pointer;  
+    background: #ffffff;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 14px;  
+    font-family: Poppins;
+    font-weight: 700;
+    user-select: none;
+    border-radius: 10px; 
+    border: none;
+    margin: 0 auto;
+}
+
+
+
+
+
+/*              FILTROS DE SQL                             */
+
+
+
+
+.filtros {
+    font-family: Poppins;
+    margin: 0px 0px 0px 20px;
+    padding: 20px;
+}
+
+.filtros select {
+    width: 7%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 50px;
+    font-family: Poppins;
+}
+
+.filtros button {
+    padding: 10px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #000000;
+    color: white;
+    border: none;
+    font-family: Poppins;
+}
+
+.filtros button:hover {
+    background-color: #3c3c3c;
+}
+
+/*                               CARDS                                  */
+
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card_1,
+.card_2,
+.card_3 {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 28%; /* Defina a largura desejada */
+    display: flex; /* Usa flexbox */
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+    border-radius: 10px;
+}
+
+
+.card-img {
+    flex-shrink: 0; /* Impede que a imagem diminua em tamanho */
+    margin-right: 10px; /* Adiciona espaço entre a imagem e o texto */
+    display: flex; /* Usa flexbox para centralizar verticalmente */
+    align-items: center; /* Alinha a imagem verticalmente ao centro */
+}
+
+.card-img img {
+    max-width: 100%; /* Ajusta a largura da imagem para ocupar 100% do contêiner */
+    margin: auto; /* Centraliza horizontalmente a imagem */
+}
+
+/* Estilo adicional, se desejar */
+.card-info p {
+    margin: 2px 2px 2px 2px;
+    text-align: left;
+    font-family: Poppins;
+    font-size: 18px;
+}
+
+.card-info span {
+    font-family: Poppins;
+    font-size: 22px;
+}
+#valor_total {
+    margin-top: 20px;
+    text-align: left;
+    font-family: Poppins;
+}
+
+
+.card-info span {
+    font-family: Poppins;
+    color: #00b806;
+}
+
+#valor-total-custo,
+#custo-fixo-valor,
+#custo-variavel-valor {
+    color: #ff0000;
+}
+
+#valor_renda-custos{
+    color: #00aaff;
+}
+
+
+/*                            TABELAS                          */
+.tabelas-container {
+    display: flex;
+    overflow-x:auto;
+    font-family: Poppins;
+
+}
+
+.tabela-renda,
+.tabela-custo {
+    flex: 1;
+    margin: 0px 20px 0px 20px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.sortable{
+    cursor: pointer;
+}
+.sortable:hover {
+    background-color: #dddddd
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+tr:nth-child(even) {           
+    background-color: #f8f8f8
+}
+
+.tabela-renda th {
+    background-color: #00b806;
+    height: 30px;
+    color: white;
+}
+
+.tabela-custo th {
+    background-color: #b80000;
+    height: 30px;
+    color: white;
+}
+
+.tabela-renda tr:hover {
+    background-color: #ececec
+}
+
+.tabela-custo tr:hover {
+    background-color: #ececec
+}
+
+
+
+
+
+/*              POPUPS ADICIONAR RENDA/CUSTO                             */
+
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo transparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Poppins;
+}
+
+.adicionar-transacao {
+    background-color: white; /* Cor de fundo branca para o quadrado do formulário */
+    padding: 30px;
+    border-radius: 10px; /* Borda arredondada */
+    max-width: 400px; /* Largura máxima do quadrado do formulário */
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.excluir-transacao {
+    background-color: white; /* Cor de fundo branca para o quadrado do formulário */
+    padding: 30px;
+    border-radius: 10px; /* Borda arredondada */
+    max-width: 400px; /* Largura máxima do quadrado do formulário */
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.adicionar-transacao form {
+    display: flex;
+    flex-direction: column;
+}
+
+.adicionar-transacao label {
+    margin-bottom: 10px;
+}
+
+.adicionar-transacao input,
+.adicionar-transacao select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.adicionar-transacao input[type="submit"] {
+    background-color: #000000; /* Cor verde para o botão de envio */
+    width: 220px;
+    cursor: pointer;  
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;  
+    font-family: Poppins;
+    font-weight: 700;
+    user-select: none;
+    border-radius: 10px; 
+    border: none;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+
+
+/*                     BOTOES AÇÕES                          */
+
+
+.button {
+    width: 220px;
+    cursor: pointer;  
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;  
+    font-family: Poppins;
+    font-weight: 700;
+    user-select: none;
+    border-radius: 10px; 
+    border: none;
+    margin-left: 43px;
+    background: #000000;
+}
+
+.button:hover {
+    background-color: #3c3c3c;
+}
+
+.close-icon {
+    font-size: 20px;
+    cursor: pointer;
+    color: rgb(255, 0, 0); /* Cor do ícone */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: Poppins;
+    font-weight: 700;
+
+}
+
+
+#botao_excluir:hover {
+    background-color: #3c3c3c;
+}
+
+
+#botao_editar,
+#botao_excluir,
+#botao_filtrar {
+    width: 80px;
+    cursor: pointer;  
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 13px;  
+    font-family: Poppins;
+    font-weight: 700;
+    user-select: none;
+    border-radius: 10px; 
+    border: none;
+    background: #000000;
+}
+
+#botao_editar {
+    margin-bottom: 10px;
+    background-color: rgb(255, 166, 0);
+}
+#botao_editar:hover {
+    background-color: rgb(231, 150, 0);
+}
+
+#botao_filtrar {
+    margin-left: 10px;
+}

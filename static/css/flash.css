@@ -1,0 +1,27 @@
+/* Adicione isto ao seu arquivo de estilo CSS */
+.flash-messages-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 300px;
+    z-index: 1000;
+}
+
+.flash-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #cc0000;
+    text-align: center;
+}
+
+.flash-message.error {
+    background-color: #ffcccc;
+    font-family: Poppins;
+}
+
+.flash-message.success {
+    background-color: #00D02E; /* Cor de fundo verde */
+    color: #fff; /* Cor do texto branco */
+    font-family: Poppins;
+}
