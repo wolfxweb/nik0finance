@@ -1,11 +1,2 @@
-# Ignorar arquivos HTML
-*.html
-
-# Ignorar arquivos CSS
-*.css
-
-# Ignorar a pasta 'static' e seu conteúdo
-/static/
-
-# Ignorar a pasta 'templates' e seus arquivos
-/templates/
+static/* linguist-vendored
+templates/* linguist-vendored
