@@ -78,7 +78,7 @@ def cadastro():
             return redirect(url_for('cadastro'))
 
         # Hash da senha antes de armazenar no banco de dados
-        hashed_password = generate_password_hash(password, method='sha256')
+        hashed_password = generate_password_hash(password)
 
         try:
             # Conectar ao banco de dados SQLite
