@@ -33,7 +33,7 @@
             <label for="filtro-ano">Filtrar por Ano:</label>
             <select name="filtro-ano" id="filtro-ano">
                 <!-- Adicione opções para os anos desejados -->
-                {% for year in range(2024, 2028) %}
+                {% for year in range(2025, 2028) %}
                     <option value="{{ year }}">{{ year }}</option>
                 {% endfor %}
             </select>
@@ -58,7 +58,7 @@
             <button id="botao_filtrar" type="button" onclick="filtrar()">FILTRAR</button>
         </form>
     </div>
-
+   
     <div class="cards">
         <div class="card_1">
             <!-- Lado esquerdo com a imagem -->
@@ -105,6 +105,7 @@
             </div>
         </div>
     </div>
+    <button class="button" id="botao_abrir_popup" onclick="mostrarPopup()">Novo Lançamento</button>
     
 
     <div class="tabelas-container">
@@ -177,7 +178,7 @@
         </div>
     </div>
 
-    <button class="button" id="botao_abrir_popup" onclick="mostrarPopup()">Adicionar Dados</button>
+   
     <div class="popup" id="popupAdicionarTransacao">
         <div class="popup" id="popupAdicionarTransacao">
             <div class="adicionar-transacao">
