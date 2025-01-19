@@ -126,7 +126,7 @@ def dashboard():
 
         # Construa a consulta SQL com base nos filtros
         sql_renda = "SELECT id, origem, descricao, tipo, valor, strftime('%d/%m/%Y', data),modelo FROM transacoes WHERE 1=1"
-        sql_custo = "SELECT id, origem, descricao, tipo, valor, strftime('%d/%m/%Y', data),modelo FROM transacoes WHERE modelo='Custo'"
+        sql_custo = "SELECT id, origem, descricao, tipo, valor, strftime('%d/%m/%Y', data),modelo FROM transacoes WHERE modelo = 'Custo'"
 
         if filtro_ano and filtro_mes:
             sql_renda += f" AND strftime('%Y-%m', data) = '{filtro_ano}-{filtro_mes}'"
@@ -344,7 +344,7 @@ def dashboardcopy():
         filtro_mes = request.args.get('filtro_mes')
 
         # Construa a consulta SQL com base nos filtros
-        sql_renda = "SELECT id, origem, descricao, tipo, valor, strftime('%d/%m/%Y', data),modelo FROM transacoes WHERE 1=1'"
+        sql_renda = "SELECT id, origem, descricao, tipo, valor, strftime('%d/%m/%Y', data),modelo FROM transacoes WHERE 1=1"
         sql_custo = "SELECT id, origem, descricao, tipo, valor, strftime('%d/%m/%Y', data),modelo FROM transacoes WHERE 1=1"
 
         if filtro_ano and filtro_mes:

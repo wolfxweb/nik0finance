@@ -179,7 +179,7 @@
                           </div>
                       </th> 
                         <th>
-                        </div>
+
                             <div class="d-flex flex-column">
                                 <span>Data</span>
                              <!--   <input type="date" class="form-control form-control-sm filtro" data-coluna="4"> -->
@@ -325,10 +325,7 @@
                     <label for="quantidade-recorrencia" class="form-label">Quantidade recorrência:</label>
                     <input type="number" id="quantidade-recorrencia" name="quantidade-recorrencia" class="form-control" step="1">
                 </div> 
-            
-            
-        </div>
-        <div class="modal-footer">
+                <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
           <button type="submit"  class="btn btn-primary">Enviar</button>
         </div>
@@ -365,7 +362,7 @@
   document.getElementById('descricao').value = descricao;
   document.getElementById('tipo').value = tipo;
   document.getElementById('valor').value = valor;
-  document.getElementById('modelo').value = modelo;
+  document.getElementById('modelo').value = "Renda";
 
   if (data_selecionada) {
       // Ajusta o formato da data de 'd/m/ano' para 'yyyy-mm-dd'
@@ -383,3 +380,4 @@
 
 </script>
 {% endblock %}
+  </div>
