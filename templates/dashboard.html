@@ -1,45 +1,122 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Nik0 Finance | Dashboard </title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% extends "base.html" %} {% block content %}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-</head>
-<body>
-    <div class="barraNavegacao">
-        <div class="conteiner_logo">
-            <img src="{{ url_for('static', filename='images/logo_nik0.png') }}" id="logo_projeto">
+<div class="container-fluid pt-2" >
+  <div class="row">
+    <!-- Coluna de 20% -->
+    <div class="col-2">
+      <!-- Conteúdo da coluna de 30% -->
+    
+      <div class="d-grid gap-2 mt-2">
+        <!-- Card 1 -->
+        <div class="col-md-12 d-flex">
+          <div class="card mb-3 w-100">
+            <div class="row g-0">
+              <div class="card-header bg-success text-white">Receita</div>
+             <!-- <div class="col-md-3 d-flex align-items-center p-1">
+                <img
+                  src="{{ url_for('static', filename='images/img_bolsadinheiro.png') }}"
+                  class="img-fluid"
+                  alt="Imagem"
+                />
+              </div>
+            -->
+              <div class="col-md-12">
+                <div class="card-body">
+                  <p class="card-text">Fixo: {{ renda_fixa_total or 0.00 }}</p>
+                  <p class="card-text">
+                    Variável: {{ renda_variavel_total or 0.00 }}
+                  </p>
+                  <p class="card-text">Total: {{ renda_total or 0.00 }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="conteiner_botao">
-            <a href="{{ url_for('gestao_usuarios') }}" id="link_gestao_usuarios">USUÁRIOS</a>
-            
-            <a id="barra">|</a>
-            <form method="post" action="{{ url_for('logout') }}" id="form_logout">
-                <input type="submit" value="SAIR">
-            </form>
+      </div>
+  <!-- Card 2 -->
+  <div class="col-md-12 d-flex">
+    <div class="card mb-3 w-100">
+      <div class="row g-0">
+        <div class="card-header bg-danger text-white">Despesas</div>
+      <!--  <div class="col-md-3 d-flex align-items-center p-1">
+          <img
+            src="{{ url_for('static', filename='images/img_moedacaindo.png') }}"
+            class="img-fluid"
+            alt="Imagem"
+          />
+        </div> 
+      -->
+        <div class="col-md-12">
+          <div class="card-body">
+            <p class="card-text text-danger">
+              Fixo: {{ custo_fixo_total or 0.00 }}
+            </p>
+            <p class="card-text text-danger">
+              Variável: {{ custo_variavel_total or 0.00 }}
+            </p>
+            <p class="card-text text-danger">
+              Total: {{ custo_total or 0.00 }}
+            </p>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+  <!-- Card 3 -->
+  <div class="col-md-12 d-flex">
+    <div class="card mb-3 w-100">
+      <div class="row g-0">
+        <div class="card-header bg-primary text-white ">Saldo</div>
+       <!-- <div class="col-md-3 d-flex align-items-center p-1">
+          <img
+            src="{{ url_for('static', filename='images/img_renda-custos.png') }}"
+            class="img-fluid"
+            alt="Imagem"
+          />
+        </div>
+        -->
+        <div class="col-md-12">
+          <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+            <p
+              class="card-text {% if renda_minus_custos is none or renda_minus_custos|float >= 0 %}text-success{% else %}text-danger{% endif %}"
+              style="font-size: 24px; margin: 0;"
+            >
+              {{ renda_minus_custos or 0.00 }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <div class="filtros">
-        <form id="filtro-form">
-            <label for="filtro-ano">Filtrar por Ano:</label>
-            <select name="filtro-ano" id="filtro-ano">
+    </div>
+    <!-- Coluna de 70% -->
+    <div class="col-10">
+      <div class="row mt-2">
+     
+       
+     
+      </div>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Lançamentos</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+          <!-- INICIO TABELA COM FILTRO -->
+          <form id="filtro-form" class="row g-3 my-2">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Ano</span>
+              <select name="filtro-ano" id="filtro-ano" class="form-control">
                 <!-- Adicione opções para os anos desejados -->
                 {% for year in range(2025, 2028) %}
                     <option value="{{ year }}">{{ year }}</option>
                 {% endfor %}
-            </select>
-        
-            <label for="filtro-mes">Filtrar por Mês:</label>
-            <select name="filtro-mes" id="filtro-mes">
+             </select>
+              <span class="input-group-text">Mês</span>
+              <select name="filtro-mes" id="filtro-mes" class="form-control">
                 <!-- Adicione opções para os meses -->
                 <option value="01">Janeiro</option>
                 <option value="02">Fevereiro</option>
@@ -54,71 +131,60 @@
                 <option value="11">Novembro</option>
                 <option value="12">Dezembro</option>
             </select>
-        
-            <button id="botao_filtrar" type="button" onclick="filtrar()">FILTRAR</button>
+              <button id="botao_filtrar" type="button" class="btn btn-secondary" onclick="filtrar()">FILTRAR</button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#novo_lancamento">
+                Adicionar 
+            </button>
+            </div>
         </form>
-    </div>
-   
-    <div class="cards">
-        <div class="card_1">
-            <!-- Lado esquerdo com a imagem -->
-            <div class="card-img">
-                <img src="{{ url_for('static', filename='images/img_bolsadinheiro.png') }}" id="logo_projeto">
-            </div>
-        
-            <!-- Lado direito com as informações -->
-            <div class="card-info">
-                <p><strong>Valor total de Renda Fixa:</strong></p>
-                <span id="renda-fixa-valor">{{ renda_fixa_total or 0.00 }}</span>
-                <p><strong>Valor total de Renda Variável:</strong></p>
-                <span id="renda-variavel-valor">{{ renda_variavel_total or 0.00 }}</span>
-                <p id="valor_total"><strong>Valor Total: <span id="valor-total">{{ renda_total or 0.00 }}</strong></span></p>
-            </div>
-        </div>
-        <div class="card_2">
-            <!-- Lado esquerdo com a imagem -->
-            <div class="card-img">
-                <img src="{{ url_for('static', filename='images/img_moedacaindo.png') }}" id="logo_projeto">
-            </div>
-        
-            <!-- Lado direito com as informações -->
-            <div class="card-info">
-                <p><strong>Valor total de Custo Fixo:</strong></p>
-                <span id="custo-fixo-valor">{{ custo_fixo_total or 0.00 }}</span>
-                <p><strong>Valor total de Custo Variável:</strong></p>
-                <span id="custo-variavel-valor">{{ custo_variavel_total or 0.00 }}</span>
-                <p id="valor_total"><strong>Valor Total: <span id="valor-total-custo">{{ custo_total or 0.00 }}</strong></span></p>
-            </div>
-        </div>
-        <div class="card_3">
-            <!-- Lado esquerdo com a imagem -->
-            <div class="card-img">
-                <img src="{{ url_for('static', filename='images/img_renda-custos.png') }}" id="logo_projeto">
-            </div>
-        
-            <!-- Lado direito com as informações -->
-            <div class="card-info">
-                <p id="renda-minus-custos"><strong>Diferença entre Renda e Custos:</strong></p> 
-                <span id="valor_renda-custos">
-                    <strong>{{ renda_minus_custos or 0.00 }}</strong>
-                </span>
-            </div>
-        </div>
-    </div>
-    <button class="button" id="botao_abrir_popup" onclick="mostrarPopup()">Novo Lançamento</button>
-    
-
-    <div class="tabelas-container">
-        <div class="tabela-renda">
-            <h2>Tabela de Rendas</h2>
-            <table>
-                <thead>
+            <table class="table table-bordered table-striped table-hover" id="tabela-transacoes">
+                <thead class="table-secondary">
                     <tr>
-                        <th class="sortable">Origem</th>
-                        <th>Descrição</th>
-                        <th class="sortable">Tipo</th>
-                        <th>Valor</th>
-                        <th class="sortable">Data</th>
+                        <th>
+                            <div class="d-flex flex-column">
+                                <span>Origem</span>
+                                <input type="text" class="form-control form-control-sm filtro" data-coluna="0" placeholder="Filtrar Origem">
+                            </div>
+                        </th>
+                        <th>
+                            <div class="d-flex flex-column">
+                                <span>Descrição</span>
+                                <input type="text" class="form-control form-control-sm filtro" data-coluna="1" placeholder="Filtrar Descrição">
+                            </div>
+                        </th>
+                        <th>
+                            <div class="d-flex flex-column">
+                                <span>Custo</span>
+                                <select class="form-select form-select-sm filtro" data-coluna="2">
+                                    <option value="">Todos</option>
+                                    <option value="Fixo">Fixo</option>
+                                    <option value="Variável">Variável</option>
+                                </select>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="d-flex flex-column">
+                                <span>Valor</span>
+                                <input type="number" class="form-control form-control-sm filtro" data-coluna="3" placeholder="Filtrar Valor" step="0.01">
+                            </div>
+                        </th>
+                        <th>
+                          <div class="d-flex flex-column">
+                              <span>Tipo</span>
+                              <select class="form-select form-select-sm filtro" data-coluna="4">
+                                  <option value="">Todos</option>
+                                  <option value="Renda">Renda</option>
+                                  <option value="Custo">Custo</option>
+                              </select>
+                          </div>
+                      </th> 
+                        <th>
+                        </div>
+                            <div class="d-flex flex-column">
+                                <span>Data</span>
+                             <!--   <input type="date" class="form-control form-control-sm filtro" data-coluna="4"> -->
+                            </div>
+                        </th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -129,93 +195,149 @@
                             <td>{{ transacao[2] }}</td>
                             <td>{{ transacao[3] }}</td>
                             <td>{{ 'R${:,.2f}'.format(transacao[4])|replace(',', '@')|replace('.', ',')|replace('@', '.') }}</td>
+                            <td>{{ transacao[6] }}</td>
                             <td>{{ transacao[5] }}</td>
                             <td>
-                                <button id="botao_editar" type="button" onclick="mostrarPopup({{ transacao[0] }})">Editar</button>
+                                <div class="d-flex gap-2">
+                                  <button id="botao_editar" type="button" class="btn btn-sm btn-warning" 
+                                            onclick="mostrarPopup('{{ transacao[0] }}','{{ transacao[1] }}','{{ transacao[2] }}','{{ transacao[3] }}','{{ transacao[4] }}','{{ transacao[5] }}')">
+                                        Editar
+                                    </button>
+                                    <form class="excluir-form" action="{{ url_for('excluir_transacao', transacao_id=transacao[0]) }}" method="post" data-id="{{ transacao[0] }}">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button id="botao_excluir" type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <script>
+              document.addEventListener('DOMContentLoaded', function () {
+ 
+                const filtros = document.querySelectorAll('.filtro');
+               console.log(filtros)
+                filtros.forEach(filtro => {
+                    filtro.addEventListener('input', function () {
+                        const coluna = this.dataset.coluna;
+                        const valorFiltro = this.value.toLowerCase();
+                        const linhas = document.querySelectorAll('#tabela-transacoes tbody tr');
 
-                                <form class="excluir-form" action="{{ url_for('excluir_transacao', transacao_id=transacao[0]) }}" method="post" data-id="{{ transacao[0] }}">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button id="botao_excluir" type="submit">Excluir</button>
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                        linhas.forEach(linha => {
+                            const celula = linha.cells[coluna];
+                            if (celula) {
+                                const textoCelula = celula.textContent.toLowerCase();
+
+                                if (filtro.type === 'date') {
+                                    // Para filtros de data
+                                    const valorFiltroDate = new Date(valorFiltro).toISOString().split('T')[0];
+                                    const textoCelulaDate = textoCelula.split(' ')[0];
+
+                                    if (textoCelulaDate === valorFiltroDate || valorFiltro === '') {
+                                        linha.style.display = '';
+                                    } else {
+                                        linha.style.display = 'none';
+                                    }
+                                } else {
+                                    // Para outros tipos de filtros
+                                    if (textoCelula.includes(valorFiltro) || valorFiltro === '') {
+                                        linha.style.display = '';
+                                    } else {
+                                        linha.style.display = 'none';
+                                    }
+                                }
+                            }
+                        });
+                    });
+                });
+            });
+
+            </script>
+            
+             
         </div>
-        <div class="tabela-custo">
-            <h2>Tabela de Custos</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th class="sortable">Origem</th>
-                        <th>Descrição</th>
-                        <th class="sortable">Tipo</th>
-                        <th>Valor</th>
-                        <th class="sortable">Data</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for transacao in transacoes_custo %}
-                        <tr>
-                            <td><strong>{{ transacao[1] }}</strong></td>
-                            <td>{{ transacao[2] }}</td>
-                            <td>{{ transacao[3] }}</td>
-                            <td>{{ 'R${:,.2f}'.format(transacao[4])|replace(',', '@')|replace('.', ',')|replace('@', '.') }}</td>
-                            <td>{{ transacao[5] }}</td>
-                            <td>
-                                <button id="botao_editar" type="button" onclick="mostrarPopup({{ transacao[0] }})">Editar</button>
-                                <form class="excluir-form" action="{{ url_for('excluir_transacao', transacao_id=transacao[0]) }}" method="post" data-id="{{ transacao[0] }}">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button id="botao_excluir" type="submit">Excluir</button>
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+
+      </div>
+      
+
     </div>
+  </div>
+</div>
 
-   
-    <div class="popup" id="popupAdicionarTransacao">
-        <div class="popup" id="popupAdicionarTransacao">
-            <div class="adicionar-transacao">
-                <span class="close-icon" onclick="fecharPopup()">X</span>
-                <h2 id="modal_titulo">Adicionar Novos Dados</h2>
-                <form method="post" action="{{ url_for('adicionar_transacao') }}">
-                    <input type="hidden" id="modal_transacao_id" name="transacao_id" value="">
-        
-                    <label for="origem">Origem:</label>
-                    <input type="text" id="origem" name="origem" required>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="novo_lancamento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal_titulo">Cadastro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="{{ url_for('adicionar_transacao') }}" class="p-4recorrente">
+                <input type="hidden" id="modal_transacao_id" name="transacao_id" value="">
             
-                    <label for="descricao">Descrição:</label>
-                    <input type="text" id="descricao" name="descricao" required>
+                <div class="mb-3">
+                    <label for="origem" class="form-label">Origem:</label>
+                    <input type="text" id="origem" name="origem" class="form-control" required>
+                </div>
             
-                    <label for="tipo">Tipo:</label>
-                    <select id="tipo" name="tipo" required>
+                <div class="mb-3">
+                    <label for="descricao" class="form-label">Descrição:</label>
+                    <input type="text" id="descricao" name="descricao" class="form-control" required>
+                </div>
+            
+                <div class="mb-3">
+                    <label for="tipo" class="form-label">Tipo despesas(Custo):</label>
+                    <select id="tipo" name="tipo" class="form-select" required>
                         <option value="Fixo">Fixo</option>
                         <option value="Variável">Variável</option>
                     </select>
+                </div>
             
-                    <label for="valor">Valor:</label>
-                    <input type="number" id="valor" name="valor" step="0.01" required>
+                <div class="mb-3">
+                    <label for="valor" class="form-label">Valor:</label>
+                    <input type="number" id="valor" name="valor" class="form-control" step="0.01" required>
+                </div>
             
-                    <label for="modelo">Modelo:</label>
-                    <select id="modelo" name="modelo" required>
-                        <option value="Renda">Renda</option>
-                        <option value="Custo">Custo</option>
+                <div class="mb-3">
+                    <label for="modelo" class="form-label">Tipo entrada:</label>
+                    <select id="modelo" name="modelo" class="form-select" required>
+                        <option value="Renda">Receita</option>
+                        <option value="Custo">Despesas</option>
                     </select>
+                </div>
             
-                    <label for="data">Data:</label>
-                    <input type="date" id="data" name="data" required>
+                <div class="mb-3">
+                    <label for="data" class="form-label">Data:</label>
+                    <input type="date" id="data" name="data" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="despesa-recorente" class="form-label">Despesa recorrente:</label>
+                    <select id="despesa-recorente" name="despesa-recorente" class="form-select" required>
+                        <option value="Não">Não</option>
+                        <option value="Sim">Sim</option>
+                    </select>
+                </div> 
+                <div class="mb-3">
+                    <label for="quantidade-recorrencia" class="form-label">Quantidade recorrência:</label>
+                    <input type="number" id="quantidade-recorrencia" name="quantidade-recorrencia" class="form-control" step="1">
+                </div> 
             
-                    <input type="submit" value="Enviar Dados">
-                </form>
-            </div>
+            
         </div>
-</body>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="submit"  class="btn btn-primary">Enviar</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+
 <script>
     // Função para exibir os dados de acordo com o filtro aplicado
     function filtrar() {
@@ -224,127 +346,40 @@
         var filtroMes = document.getElementById('filtro-mes').value;
     
         // Constrói a URL com os parâmetros de filtro
-        var url = '/dashboard?filtro_ano=' + filtroAno + '&filtro_mes=' + filtroMes;
+       var url = '/dashboard?filtro_ano=' + filtroAno + '&filtro_mes=' + filtroMes;
     
         // Redireciona para a URL filtrada
         window.location.href = url;
     }
-    // Função para ordenar as tabelas quando o cabeçalho é clicado
-    $(document).ready(function () {
-        $('th.sortable').click(function () {
-            var table = $(this).parents('table').eq(0);
-            var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()));
-            this.asc = !this.asc;
-            if (!this.asc) {
-                rows = rows.reverse();
-            }
-            for (var i = 0; i < rows.length; i++) {
-                table.append(rows[i]);
-            }
-        });
+    function mostrarPopup(transacaoId,origem, descricao, tipo, valor,data_selecionada  ) {
 
-        // Função para comparar os valores nas colunas
-        function comparer(index) {
-            return function (a, b) {
-                var valA = getCellValue(a, index);
-                var valB = getCellValue(b, index);
-                return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
-            };
-        }
 
-        // Função para obter o valor da célula
-        function getCellValue(row, index) {
-            return $(row).children('td').eq(index).text();
-        }
-    });
-    // Função para abrir o modal de nova/editar transacao
-    function mostrarPopup(transacaoId, titulo = 'Editar Dados') {
-        var popup = document.getElementById('popupAdicionarTransacao');
-        popup.style.display = 'flex';
+ 
+  var myModal = new bootstrap.Modal(document.getElementById('novo_lancamento'));
+  document.getElementById('modal_transacao_id').value = transacaoId || '';
+  document.getElementById('modal_titulo').innerText = "Edição";
+  
+  myModal.show();
 
-        // Preencher o campo transacao_id
-        document.getElementById('modal_transacao_id').value = transacaoId || '';
+  document.getElementById('origem').value = origem;
+  document.getElementById('descricao').value = descricao;
+  document.getElementById('tipo').value = tipo;
+  document.getElementById('valor').value = valor;
+  document.getElementById('modelo').value = modelo;
 
-        // Lógica para obter os dados da transação do servidor usando AJAX
-        if (transacaoId) {
+  if (data_selecionada) {
+      // Ajusta o formato da data de 'd/m/ano' para 'yyyy-mm-dd'
+      let partesData = data_selecionada.split('/'); // Divide a data no formato 'd/m/ano'
+      let formattedDateString = `${partesData[2]}-${partesData[1]}-${partesData[0]}`; // Formata como 'yyyy-mm-dd'
+      
+      // Atribui ao campo de data
+      document.getElementById('data').value = formattedDateString;
+  }
 
-            // Alterar dinamicamente o título do modal
-            document.getElementById('modal_titulo').innerText = titulo;
+  myModal.show();
+      
 
-            // Exemplo usando jQuery AJAX para obter dados da transação ao editar
-            $.ajax({
-                url: '/obter_dados_transacao/' + transacaoId,
-                method: 'GET',
-                success: function (data) {
-                    // Preencher os campos do formulário no modal com os dados obtidos
-                    document.getElementById('origem').value = data.origem;
-                    document.getElementById('descricao').value = data.descricao;
-                    document.getElementById('tipo').value = data.tipo;
-                    document.getElementById('valor').value = data.valor;
-                    document.getElementById('modelo').value = data.modelo;
-                    document.getElementById('data').value = data.data;
-                },
-                error: function (error) {
-                    console.error('Erro ao obter dados da transação: ' + error);
-                }
-            });
-        } else {
-            // Limpar os campos do formulário ao adicionar uma nova transação
-            document.getElementById('origem').value = '';
-            document.getElementById('descricao').value = '';
-            document.getElementById('tipo').value = 'Fixo'; // Valor padrão, ajuste conforme necessário
-            document.getElementById('valor').value = '';
-            document.getElementById('modelo').value = 'Renda'; // Valor padrão, ajuste conforme necessário
-            document.getElementById('data').value = '';
-        }
-    }
-    // Função para fechar o modal de nova/editar transacao
-    function fecharPopup() {
-        var popup = document.getElementById('popupAdicionarTransacao');
-        popup.style.display = 'none';
+  }
 
-        // Resetar o título para "Adicionar Novos Dados" ao fechar
-        document.getElementById('modal_titulo').innerText = 'Adicionar Novos Dados';
-    }
-    // Esconder a div adicionar-transacao inicialmente
-    document.getElementById('popupAdicionarTransacao').style.display = 'none';
-    
-    // Script para enviar a solicitação de exclusão
-    document.addEventListener('DOMContentLoaded', function () {
-        // Adiciona um evento de clique para os botões de exclusão
-        document.querySelectorAll('.excluir-btn').forEach(function (button) {
-            button.addEventListener('click', function () {
-                // Obtém o ID da transação a partir do atributo data-id
-                var transacaoId = button.dataset.id;
-    
-                // Encontra a linha da tabela correspondente e a remove
-                var row = button.closest('tr');
-                if (row) {
-                    fetch('/excluir_transacao/' + transacaoId, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Transação excluída com sucesso:', data);
-    
-                        // Recarrega a página após a exclusão
-                        location.reload();
-                    })
-                    .catch(error => {
-                        console.error('Erro ao excluir transação:', error);
-                    });
-                }
-            });
-        });
-    });
-
-    
-    
-        
-    
-    
-    
 </script>
+{% endblock %}
